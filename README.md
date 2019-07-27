@@ -65,7 +65,8 @@ you go):
 
 5. In this step, get the dots to show on the screen (see picture below). Doing this will require you to draw circles into the cells of an invisible grid (imagine a grid drawn on your screen where each cell contains one of the Dots in the center of the cell).
 
-![Showing Dots on Screen](Dots.PNG)
+
+    ![Showing Dots on Screen](Dots.PNG)
 
     In your constructor, start by setting up a Paint object to use for dots and also get the array of colors you put in colors.xml (you can do this with getResources().getIntArray(R.array.dotColors)). You will need to know the width and height of each cell in the grid which can be found by dividing the width and height of the GameView by the number of cells in each row and column. You can only get the width and heightafter the view has been sized, so you will need to override the method "void onSizeChanged(int width, int height, int oldWidth, int oldHeight)".Once you have the height and width of each cell, you can pass over each Dot in the game and set its center X and Y (e.g., the center X position for a Dot in column 1 should be 1 * mCellWidth + (mCellWidth / 2),  and similar for Y). Also set the radius of each Dot to 40.
 
@@ -75,7 +76,7 @@ you go):
 
 6. In this step, start creating connections (see picture below) between selected Dots. To do this, you will need to extend your model classes. Extend the Dot class so that it keeps track of whether it is selected or not. Also, add another method to the Dot class to figure out whether it is adjacent to another Dot that you pass in (Dots are adjacent if they are to the left, bottom, top, or right of another Dot). Extend your DotsGame class so that it keeps track of the Dots that are currently selected. You want to be able to get the list of selected Dots, add to the list, and clear the list. Be careful when adding Dots, you want to only add them if they are valid selections (adjacent and same color).
 
-![Showing Connection on Screen](Connection.PNG)
+    ![Showing Connection on Screen](Connection.PNG)
 
     You are going to need two parts to get this working. You will need to override onTouchEvent to allow it to identify what Dots are being selected, and then you will need to modify onDraw so that it draws a Path between the selected Dots. You can identify Dots in your onTouchEvent by using the MotionEvent to get the touched X and Y coordinates on the screen, and then identifying the row and column that would correspond to those coordinates (remember the invisible grid!). If the Dot is a valid addition, then go ahead and add it to your selected Dots. Make sure that you clear the selected Dots when the user lifts their finger, and call invalidate() at the end of the method (so onDraw is triggered).
 
